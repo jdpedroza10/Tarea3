@@ -25,6 +25,21 @@ def COV(X):
 		for j in range (tam):
 			s[i,j]=cov(X[i],X[j])
 	return s
+COV_M=COV(datos)
+print("Matriz de covarianza asociada a los datos (sin incluir ID number) : ")
+print(COV_M)
+#******************************************+
+#headers=['ID', 'Diagnosis', 'Radius', 'Texture', 'Perimeter', 'Area','Smoothness', 'Compactness', 'Concavity', 'Concave.points','Symmetry', 'Fractal.dimension']
+
+#Autovalores y auto vectores
+vals,vecs=linalg.eig(COV_M)
+print("Aoutovalores y Autovectores de la matriz de covarianza")
+for i in range(len(vals)):
+	print("******************************************")
+    	print ("El autovalor ",vals[i])
+    	print("Esta asociado con el vector ")
+    	print(vecs[i])
+
 
 
 
