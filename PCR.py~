@@ -22,9 +22,6 @@ def COV(X):
     	tam=np.shape(X)[0]
     	s=np.zeros([tam,tam])
     	for i in range (tam):
-		for j in range (tam):
-			s[i,j]=cov(X[i],X[j])
-	return s
 
 
 

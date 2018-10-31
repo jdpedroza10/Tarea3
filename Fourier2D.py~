@@ -44,6 +44,38 @@ plt.close()
 print("se asume que las frecuencias de ruido corresponden  a las intesidades mas altas del espectro de Fourier 2D.")
 print("Es por eso que el filtro está orientado a hacer cero los demas valores.")
 
+def Filtro2D(A,Ic):
+	S=A.copy()
+	S[S>Ic]=0
+# se remueven las frecuencias con intensidad superior a Ic  
+	return S
+T_filtered=Filtro2D(T,100) #127 max
+plotT_x,plotT_y=[],[]
+for i in range(np.shape(T)[0]):
+	plotT_x.append(np.mean(T_filtered[i,:]))
+	plotT_y.append(np.mean(T_filtered[:,i]))
+
+plotT_x=np.array(plotT_x)
+plotT_y=np.array(plotT_y)
+xx=frec(np.arange(len(plotT_x)))
+
+# grafica de trasnf. arbol usando subplots
+plt.figure(figsize=[10,7])
+plt.suptitle("Transformada de Fourier de arbol.png",fontsize=18)
+plt.subplot(2,1,1)
+plt.plot(xx,plotT_x,c="g")
+plt.xscale('log')
+plt.xlabel("Frecuencia [$pix^{-1}$]")
+plt.ylabel("Promedio Columnas")
+plt.subplot(2,1,2)
+plt.plot(xx,plotT_y,c="r")
+plt.xlabel("Frecuencia [$pix^{-1}$]")
+plt.ylabel("Promedio Filas")
+plt.xscale('log')
+plt.savefig("PedrozaJulian_FT2D_filtrada.pdf")
+plt.close()
+
+
 
 
 
