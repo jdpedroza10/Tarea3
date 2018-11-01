@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 import scipy.linalg as linalg
 import pandas as pd
 
+#datos=np.genfromtxt("WDBC.dat",delimiter=",")
 datos=pd.read_csv("WDBC.dat",header=None)
-arr=np.ones(len(datos))
-ii=datos[1]=="B"
-arr[ii]=0
-datos[1]=arr
+_=np.ones(len(datos[0]))
+#datos=datos
+_[datos[1]=="B"]=0
+datos[1]=_
 datos=np.array(datos).T
 datos=datos[1:,:]
 
